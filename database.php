@@ -1,5 +1,6 @@
 <?php
 // This demo is taken/modofied from numerous places on the net for the purpose of this demo
+require_once('libs.php');
 
 myecho("Attempting to connect to the database...");
 
@@ -47,31 +48,5 @@ $insert_query = "
 
 $result = mysql_query($insert_query) or die('Query failed: ' . mysql_error());
 
-
-
-
-
-
 // Closing connection
 mysql_close($link);
-
-
-function generateRandomString($length = 10) {
-    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $charactersLength = strlen($characters);
-    $randomString = '';
-    for ($i = 0; $i < $length; $i++) {
-        $randomString .= $characters[rand(0, $charactersLength - 1)];
-    }
-    return $randomString;
-}
-
-function myecho($string) {
-  echo $string."\n".(php_sapi_name() !== 'cli'?'<br/>':'');
-  // Flush to screen
-  if (php_sapi_name() !== 'cli') {
-      echo "<!--" . str_pad('',4096)." -->";
-      ob_flush();
-      flush();
-  }
-}
