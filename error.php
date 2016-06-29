@@ -1,0 +1,6 @@
+This code will fail...
+<?php
+This is invalid php code...
+
+
+?>
