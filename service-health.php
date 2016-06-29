@@ -5,19 +5,20 @@ $GLOBALS['failed'] = FALSE;
 $GLOBALS['failures'] = array();
     
 // Do a manual header override requiring a username and password...
+/*
 if ( ( empty($_REQUEST['password']) || $_REQUEST['password'] != 'awsr0cks') && 
      (empty($_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_PW'] != 'awsr0cks') ) {
     header( "www-authenticate: Basic realm=\"$realm\"" );
     header( "HTTP/1.0 401 Unauthorized" );
-    print_r($_SERVER); exit;
     echo "HTTP/1.0 401 Unauthorized\nAccess Denied and logged.  Please login or go away.\n";
     exit;
 }
+*/
 
 // trigger_error("Service-Health started at ".date('M-d-y H:i:s')." on ".getActualHostname()." by ".getActualRemoteIP(), E_USER_WARNING); 
 
 // Load DB Configuration
-$database_settings = require('application/settings/database.php');
+// $database_settings = require('application/settings/database.php');
 
 // print_r($database_settings); exit;
 
@@ -148,7 +149,7 @@ echo displayTestResults("That this server's disk space is not full (< 256MB free
 echo displayTestResults("That the homepage loads properly from http://localhost/", function () {
     $url = 'http://localhost/?cache_busting='. mt_rand(1,500000);
     $result = curlRequest($url, 'GET', array(), false, false, 9);
-    if (stripos($result, "test") !== FALSE) {
+    if (stripos($result, "Thanks for coming") !== FALSE) {
         return true;
     } else {
         return false;
