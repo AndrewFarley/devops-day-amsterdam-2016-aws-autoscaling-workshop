@@ -17,11 +17,6 @@ if ( ( empty($_REQUEST['password']) || $_REQUEST['password'] != 'awsr0cks') &&
 
 // trigger_error("Service-Health started at ".date('M-d-y H:i:s')." on ".getActualHostname()." by ".getActualRemoteIP(), E_USER_WARNING); 
 
-// Load DB Configuration
-// $database_settings = require('application/settings/database.php');
-
-// print_r($database_settings); exit;
-
 ?><!DOCTYPE html><html><head>
 <meta http-equiv="expires" content="0">
 <meta http-equiv="pragma" content="no-cache">
@@ -59,30 +54,28 @@ if ( ( empty($_REQUEST['password']) || $_REQUEST['password'] != 'awsr0cks') &&
 // });
 
 
-/*
-echo displayTestResults("That the database (".$database_settings['params']['dbname'].") is accessible at ".$database_settings['params']['host'], function () {
-    
-    // Load DB Configuration
-    $database_settings = require('application/settings/database.php');
+$database_hostname = 'hostname';
+$database_dbname   = 'databasename';
+$database_username = 'username';
+$database_password = 'password';
+
+echo displayTestResults("That the database (".$database_dbname.") is accessible at ".$database_hostname, function () {
     
     // Try to connect to the server
-    $link = mysqli_connect($database_settings['params']['host'], $database_settings['params']['username'], $database_settings['params']['password']);
+    $link = mysqli_connect('hostname', 'username', 'password');
     if (!$link) {
-        die('here link');
         return false;
     }
     
     // Try to connect to our database
-    $db_selected = mysqli_select_db($link, $database_settings['params']['dbname']);
+    $db_selected = mysqli_select_db($link, 'databasename');
     if (!$db_selected) {
-        die('heredb');
         return false;
     }
 
     // If we succeeded, then we're good
     return true;
 });
-*/
 
 
 
